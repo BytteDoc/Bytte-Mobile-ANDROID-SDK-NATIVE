@@ -33,7 +33,7 @@ Los factores limitantes para la integración del SDK son:
 * **Sistemas soportados Android 5.0 o superior gradle 4.1.2 o superior arquitecturas arm  x86,64 bits.**
 
 
-# Instalación De las librerías 
+# Instalación de las librerías 
 En el archivo gradle build.gradle  del proyecto adicionaremos la 'URL' que nos entrega Bytte para la descarga de los archivos necesarios, al igual que el usuario y token de acceso.
 
 >Las librerías tiene soporte tanto a 32 como a 64 bit en arm. 
@@ -59,7 +59,7 @@ repositories {
 }
 ```
 
-# Importamos Las Librerias Bytte
+# Importamos las Librerias Bytte
 En el archivo gradle *build.gradle*  adicionaremos las dependencias. 
 
 
@@ -114,7 +114,7 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias.
 ```
 ## Manifest 
 >La configuración del manifest es la siguiente: requiere permisos para el uso de internet, lectura y escritura en el dispositivo y cámara.
->configuracion de las actividades Bytte para las capturas. 
+>Configuración de las actividades Bytte para las capturas. 
 ```
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -194,9 +194,9 @@ En la url se muestran los detalles para solicitar la llave safetynet.
 
 
 
-## Captura Biometria huellas 
+## Captura Biometría huellas 
 ### Parámetros
->fingercallback-> Callback de respuesta genera un sucsses o fail y el detalle. 
+>fingercallback-> Callback de respuesta genera un success o fail y el detalle. 
 
 >finger ->Identifica la mano que quiero capturar: enviamos el dedo  #2, mano derecha, dedo #7,  mano izquierda.
 
@@ -221,8 +221,8 @@ En la url se muestran los detalles para solicitar la llave safetynet.
 
 
 ```    
-## Configuracion colores de la pantalla de huellas
->boxes -> Color de borde  del cuadro de la camará.
+## Configuración colores de la pantalla de huellas
+>boxes -> Color de borde  del cuadro de la cámara.
 >boxes_transparent -> Color del recuadro  entre el header y el footer.
 >colorPrimary -> Color del footer y el header. 
 
@@ -326,11 +326,11 @@ Vamos a la carpeta res/values/strings.xml
 
 
 
-## Captura Biometria facial 
+## Captura Biometría facial 
 ### Parámetros
 >Facecallback-> Callback de respuesta genera un success o fail y el detalle .
 
->Face ->Identifica la camara 0->frontal 1 posterior. 
+>Face ->Identifica la cámara 0->frontal 1 posterior. 
 
 >NamePath-> El nombre del archivo de la liencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
@@ -402,7 +402,7 @@ Estos colores se toman de la configuración de la app
 
 ```
 
-# respuestas de las capturas 
+# Respuestas de las capturas 
 ## onActivityResult  
 Es el callback de la actividad encargado de responder, las acciones anteriormente llamadas. "Documentos" frente y reverso. 
 ```kotlin
@@ -462,10 +462,10 @@ Es el callback de la actividad encargado de responder, las acciones anteriorment
 
 * Retorno: se retorna en la variable un String results_Doc “objeto JSON”con los siguientes datos:
 * La información retornada es:
-    * * VersionCedula 
-      * •02 –Cedula de Ciudadanía.
-      * •03 –Cedula de Ciudadanía.
-      * •I3 –Tarjeta de Identidad.
+    * * Version Cédula. 
+      * 02 –Cédula de Ciudadanía.
+      * 03 –Cédula de Ciudadanía.
+      * I3 –Tarjeta de Identidad.
       * NumeroTarjeta: Numero de plástico.
       * NumeroCédula.
       * PrimerApellido.
@@ -478,12 +478,12 @@ Es el callback de la actividad encargado de responder, las acciones anteriorment
       * RH.
       * TipoDedo(Dedo impreso en el documento) dedo principal impreso en el documento.
       * TipoDedo2 segunda huella. 
-      * La identifiacíon de los dedos es: 1 –Derecho Pulgar, 2 –Derecho Índice, 3 –Derecho Medio, 4 –Derecho Anular, 5 –Derecho Meñique, 6        –Izquierdo Pulgar, 7 –Izquierdo Índice, 8 –Izquierdo Medio, 9 –Izquierdo Anular, 10 –Izquierdo Meñique, 20 –Mano derecha, 21 –Mano        izquierda.
+      * La identifiación de los dedos es: 1 –Derecho Pulgar, 2 –Derecho Índice, 3 –Derecho Medio, 4 –Derecho Anular, 5 –Derecho Meñique, 6        –Izquierdo Pulgar, 7 –Izquierdo Índice, 8 –Izquierdo Medio, 9 –Izquierdo Anular, 10 –Izquierdo Meñique, 20 –Mano derecha, 21 –Mano        izquierda.
       * BarcodeBase64: Código de barras en base64 que se requiere para procesos posteriores.
-      * PathImagen: Ubicación donde se almacenó la imagen del documento (esta puede ser eliminada por la aplicación cuando ya no se             requiera)(la imagen se retorna de tamaño 640x480 independiente de la calidad de la cámara del dispositivo).
+      * PathImagen: Ubicación donde se almacenó la imagen del documento (esta puede ser eliminada por la aplicación cuando ya no se requiera)  (la imagen se retorna de tamaño 640x480 independiente de la calidad de la cámara del dispositivo).
 
 
-TARJETA DE IDENTIDAD  
+Tarjeta de identidad
 * {
   "CodigoOperacion":"0000",
   "Frente":{"PathImagen":"/data/user/0/com.biometric.bytte.casbauth/files/Documents/DB_IMG_c2dd0b5a_617c_4374_a94c_159ce6391140.jpg","PathImagenRostro":"/data/user/0/com.biometric.bytte.casbauth/files/Documents/DB_IMG_df7e6888_6a37_4996_b006_53037012dd7f.jpg","NumeroCedula":"941120-10550"},"MensajeOriginal":"Captura exitosa","MensajeRetorno":"Ok Captura","Reverso":{"PathImagen":"/data/user/0/com.biometric.bytte.casbauth/files/Documents/DB_IMG_14d38a11_8492_48cc_aac9_7814f2eaba2e.jpg","Apellidos":"GAMBA PEDROZO","BarcodeBase64":"//h0q6x/3p2VkEJSnSP4AAAAAAAAAAAAAAAAAAAAAAAAAADcCMABSVf+AgFeQXXVpn1ebYKJpcHdfaal4bEybR51wfH5/02g8lJpWz2zbeZON3414ioeUO3hIenKRcVOCZ0mqv3WKb8dtjYePapZinHycjpuDlKk6Z0ZeVU5HdVhvWmRrVmGZaVN9UzhMLUXqtb9/VUndf2nEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHviVG/e3Wk3cFhOq/uitmEFCMmSr5+h9lM6LYf49eN2bA0iuOEZDg\u003d\u003d","FechaNacimiento":"1994/11/20","Nombres":"ELIANA ","NombresCompletos":" CONSUELO  ","NumeroCedula":"102365","NumeroTarjeta":"24799519","PrimerApellido":"GAM","PrimerNombre":"ELIANA","RH":"O+","SegundoApellido":"PE","SegundoNombre":"CONS","Sexo":"F","TipoDedo1":"2","TipoDedo2":"7","VersionCedula":"I3"},"StatusOperacion":true}
@@ -526,7 +526,7 @@ Cédula de extranjería
 }
 
 
-Cédula digítal 
+Cédula digital 
 
 * {
   "CodigoOperacion":"0000",
@@ -591,9 +591,9 @@ Huellas
 <string name="timeOut">TimeOut</string>
 <string name="Canceladoproposito">Cancelado a proposito</string>
 <string name="ErrorLicencia_MicroBlink">Error de Licencia MicroBlink"</string>
-<string name="ErrorLicencia_Biometria">Error de Licencia biometria"</string>
+<string name="ErrorLicencia_Biometria">Error de Licencia biometría"</string>
 <string name="Error_Capturahuellas">Error en la captura de las huellas"</string>
-<string name="ErrorLicenciaBiometria">Error licencia de  biometria"</string>
+<string name="ErrorLicenciaBiometria">Error licencia de  biometría"</string>
 
 ------------------------------
 Control de cambios
