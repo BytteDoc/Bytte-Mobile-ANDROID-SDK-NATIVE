@@ -8,41 +8,41 @@
 # Bytte SDK  Android
 ## Integración sdk Bytte Android 
     Autor Venancio prada. 
-    Fecha de creacion 9 septiembre 2021.
-    version  documentación -> 2.0.0.
+    Fecha de creación 9 septiembre 2021.
+    versión  documentación -> 2.0.0.
 
 
 
 # CONFIDENCIALIDAD
-    La   información   contenida   en   el   presente   documento   es CONFIDENCIAL,  hace  parte  del  secreto  comercial  e  industrial de  la  empresa  e  implica  transmisión  de  información  cuya propiedad  corresponde  exclusivamente  a BYTTE  SAS.  En consecuencia,  la  divulgación  o  el uso  inapropiado  de  la información aquí contenida por parte del receptor de la misma, implicarán la aplicación de las normas legales pertinentes para su debida protección.
+La   información   contenida   en   el   presente   documento   es CONFIDENCIAL,  hace  parte  del  secreto  comercial  e  industrial de  la  empresa  e  implica  transmisión  de  información  cuya propiedad  corresponde  exclusivamente  a BYTTE  SAS.  En consecuencia,  la  divulgación  o  el uso  inapropiado  de  la información aquí contenida por parte del receptor de la misma, implicarán la aplicación de las normas legales pertinentes para su debida protección.
 
 # Factores Limitantes 
 Los factores limitantes para la integración del SDK son:
 
 * Se debe verificar la calidad de la cámara, es recomendable utilizar dispositivos con cámara que tengan la característica de “AutoFoco” y flash.
-* Se recomiendan cámaras con resolución mayores o iguales a 5 Mega Pixeles frontal y 8 MegaPixeles para un óptimo rendimiento“ mejor cámara mejora las imágenes”
-* El SDK no funciona sobre dispositivos virtuales, únicamente sobre dispositivos físicos
-* No presenta inconveniente para compilaciones Android 30
-* Mínima versión soportada Android 19
-* esta solución ya trabaja sobre androidX por lo cual si el proyecto no lo soporta se debe migrar para que la captura de los documentos funcionen.
+* Se recomiendan cámaras con resolución mayores o iguales a 5 MegaPixeles frontal y 8 MegaPixeles para un óptimo rendimiento, “mejor cámara mejora las imágenes”.
+* El SDK no funciona sobre dispositivos virtuales, únicamente sobre dispositivos físicos.
+* No presenta inconveniente para compilaciones Android 30.
+* Mínima versión soportada Android 19.
+* Esta solución ya trabaja sobre androidX por lo cual si el proyecto no lo soporta se debe migrar para que la captura de los documentos funcionen.
 
 
-* **Se debe verificar la calidad de la cámara, es recomendable utilizar dispositivos con cámara que tengan la característica de “Auto Foco” habilitada**
-* **Se recomiendan cámaras con resolución mayores o iguales a 8 Mega Pixeles para un óptimo rendimiento**
-* **El SDK no funciona sobre dispositivos virtuales, únicamente sobre dispositivos físicos**
-* **Sistemas soportados Android 5.0 o superior gradle 4.1.2 o superior arquitecturas arm  x86,64 bits**
+* **Se debe verificar la calidad de la cámara, es recomendable utilizar dispositivos con cámara que tengan la característica de “Auto Foco” habilitada.**
+* **Se recomiendan cámaras con resolución mayores o iguales a 8 MegaPixeles para un óptimo rendimiento.**
+* **El SDK no funciona sobre dispositivos virtuales, únicamente sobre dispositivos físicos.**
+* **Sistemas soportados Android 5.0 o superior gradle 4.1.2 o superior arquitecturas arm  x86,64 bits.**
 
 
-# Instalacion De las librerias 
-En el archivo gradle build.gradle  del projecto adicionaremos la url que nos entrega Bytte para la descarga de los archivos necesarios, al igual que el usuario y token de acceso.
+# Instalación De las librerías 
+En el archivo gradle build.gradle  del proyecto adicionaremos la 'URL' que nos entrega Bytte para la descarga de los archivos necesarios, al igual que el usuario y token de acceso.
 
->las librerias tiene soporte tanto a 32 como a 64 bit en arm 
+>Las librerías tiene soporte tanto a 32 como a 64 bit en arm. 
 
 
 ```gradle 
 
 android{ 
-    defaultconfig  despues de 
+    defaultconfig  después de 
     versionName ingresamos 
     ndk {abiFilters  “armeabi-v7a”, "arm64-v8a"}
 
@@ -60,10 +60,10 @@ repositories {
 ```
 
 # Importamos Las Librerias Bytte
-En el archivo gradle *build.gradle*  adicionaremos las dependencias 
+En el archivo gradle *build.gradle*  adicionaremos las dependencias. 
 
 
->Estas son las librerías necesarias para el uso, funcionalidad y captura de documentos colombiano, y biometría 
+>Estas son las librerías necesarias para el uso, funcionalidad y captura de documento colombiano, y biometría. 
 
 ## Dependencias buid.gradle 
 ```gradle
@@ -113,8 +113,8 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias
 
 ```
 ## Manifest 
->La configuración del manifest es la siguiente: requiere permisos para el uso de internet, lectura y escritura en el dispositivo y cámara
->configuracion de las actividades Bytte para las capturas 
+>La configuración del manifest es la siguiente: requiere permisos para el uso de internet, lectura y escritura en el dispositivo y cámara.
+>configuracion de las actividades Bytte para las capturas. 
 ```
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -133,14 +133,14 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias
 ```
 
 ## Captura de Insumos 
-El app debe solicitar los permisos  en tiempo de ejecución antes de usar la funcionalidad y validar que el permiso fue otorgado
+El app debe solicitar los permisos  en tiempo de ejecución antes de usar la funcionalidad y validar que el permiso fue otorgado.
 
 ## Captura Frente Documento
-### Parametros
->EXTRAS_PROTECT_KEY Si la imagen estará protegido valor, si está en vacío no esta protegida
->EXTRAS_TIMEOUT  Genera un tiempo de funcionamiento en la captura por segundos
->EXTRAS_LICENSE_KEY licencia proveida por Bytte para la captura de  los documentos
->EXTRAS_COUNTRY Identificador para la captura de los diferentes documentos
+### Parámetros
+>EXTRAS_PROTECT_KEY :Esta identificará si la imagen estará o nó protegida; si está, en vacío nó está protegida.
+>EXTRAS_TIMEOUT  :Genera un tiempo de funcionamiento en la captura por segundos.
+>EXTRAS_LICENSE_KEY :Licencia provista por Bytte para la captura de  los documentos.
+>EXTRAS_COUNTRY :Identificador para la captura de los diferentes documentos.
 ```kotlin 
  var intent = Intent(this@MainActivity, FrontDocument::class.java)
             intent.putExtra("EXTRAS_PROTECT_KEY", "")
@@ -150,15 +150,15 @@ El app debe solicitar los permisos  en tiempo de ejecución antes de usar la fun
             startActivityForResult(intent, MY_REQUEST_CODE_FRONT)
 ```
 ## Captura Dorso Documento
-### Parametros
+### Parámetros
 
->EXTRAS_PROTECT_KEY Si la imagen estará protegido valor, si está en vacío no esta protegida
->EXTRAS_TIMEOUT  genera un tiempo de funcionamiento en la captura por segundos
->EXTRAS_LICENSE_KEY licencia proveida por Bytte para la captura de  los documentos
->EXTRAS_COUNTRY identificador para la captura de los diferentes documentos
+>EXTRAS_PROTECT_KEY :Esta identificará si la imagen estará o nó protegida; si está, en vacío nó está protegida.
+>EXTRAS_TIMEOUT  :Genera un tiempo de funcionamiento en la captura por segundos.
+>EXTRAS_LICENSE_KEY :Licencia provista por Bytte para la captura de  los documentos.
+>EXTRAS_COUNTRY :Identificador para la captura de los diferentes documentos.
 
 
-| Pais   | Tipo documento |
+| País   | Típo documento |
 |--------|----------------|
 | COEXT  | DOCUMENTO COLOMBIANO DE EXTRANJERIA |
 | COTI   | DOCUMENTO COLOMBIANO TARJETA DE IDENTIDAD |
@@ -176,33 +176,33 @@ El app debe solicitar los permisos  en tiempo de ejecución antes de usar la fun
             startActivityForResult(intent, MY_REQUEST_CODE_BACK)
 ```
 
-## Licenciamiento Biometria huellas y rostro
-### Parametros
-**Para el uso de la licencia identy es necesario registrar el app Pakage ID en la paltaforma de google developer**  
-* **Para generar la llave safetyNet api key busca los detalles del resgistro**
-en https://developer.android.com/training/safetynet/attestation 
-* **Desarrollador SHA1 Key. Cada desarrollador necesita un par de claves para firmar aplicaciones: una para debug y otra para el modo de release. Estos HASH también deben estar asociados con la licencia.**
+## Licenciamiento Biometría Huellas y Rostro
+### Parámetros
+**Para el uso de la licencia identy es necesario registrar el app Package ID en la plataforma de google developer.**  
+* **Para generar la llave safetyNet api key busca los detalles del resgistro.**
+en https://developer.android.com/training/safetynet/attestation
+* **Desarrollador SHA1 Key. Cada desarrollador necesita un par de claves para firmar aplicaciones: una para 'debug' y otra para el modo de 'release'. Estos HASH también deben estar asociados con la licencia.**
 
-## licencia  Android para el uso de huellas
-* **crear una carpeta en el direccorio android llamada assets**
-Dentro de esa carpeta depositamos el archivo de licencia que se generara para la implementación en debug y otra para reléase
+## Licencia  Android para el uso de huellas
+* **Crear una carpeta en el directorio android llamada 'assets'.**
+Dentro de esa carpeta depositamos el archivo de licencia que se genera para la implementación en 'debug' y otra, reléase.
 
 
-## Luego vamos a generar la llave safetynet 
+## Llave safetynet 
 https://developer.android.com/training/safetynet/attestation
-en la url se muestran los detalles para solicitar la llave safetynet 
+En la url se muestran los detalles para solicitar la llave safetynet. 
 
 
 
 ## Captura Biometria huellas 
-### Parametros
->fingercallback-> callback de respuesta genera un susses o fail y el detalle 
+### Parámetros
+>fingercallback-> Callback de respuesta genera un sucsses o fail y el detalle. 
 
->finger ->identifica la mano que quiero capturar 2 mano derecha, 7  mano izquierda
+>finger ->Identifica la mano que quiero capturar: enviamos el dedo  #2, mano derecha, dedo #7,  mano izquierda.
 
->namePath-> el nombre del archivo de la liencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+>namePath-> El nombre del archivo de la licencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
->netkey -> token generado despues de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs
+>netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs.
 
 ``` kotlin
 
@@ -221,10 +221,10 @@ en la url se muestran los detalles para solicitar la llave safetynet
 
 
 ```    
-## configuracion colores de la pantalla de huellas
->boxes -> color de borde  del cuadro de la camara
->boxes_transparent -> color del recuadro  entre el header y el footer
->colorPrimary -> color del footer y el header 
+## Configuracion colores de la pantalla de huellas
+>boxes -> Color de borde  del cuadro de la camará.
+>boxes_transparent -> Color del recuadro  entre el header y el footer.
+>colorPrimary -> Color del footer y el header. 
 
     ```  xml
     <color name="boxes">#FF5722</color>
@@ -233,8 +233,8 @@ en la url se muestran los detalles para solicitar la llave safetynet
     <color name="colorPrimaryDark">#FF5722</color>
 
     ```
-## configuracion en español para mensajes  huellas
-vamos a la carpeta res/values/strings.xml
+## Configuración en español para mensajes huellas
+Vamos a la carpeta res/values/strings.xml
 
 ``` xml
  <string name="id_searching_left">Buscando dedos izquierdos…</string>
@@ -254,7 +254,7 @@ vamos a la carpeta res/values/strings.xml
         <string name="id_continue">SEGUIR</string>
         <string name="id_dshow_again">No me lo muestres de nuevo</string>
         <string name="id_enrollment_completed">INSCRIPCIÓN FINALIZADA</string>
-        <string name="id_exit_text">¿Quieres salir de Capture?</string>
+        <string name="id_exit_text">¿Quieres salir de la captura?</string>
         <string name="id_good_quality">Todo de buena calidad</string>
         <string name="id_hand_closer">Por favor acerca la mano</string>
         <string name="id_hand_further_away">Mueva la mano más lejos</string>
@@ -270,7 +270,7 @@ vamos a la carpeta res/values/strings.xml
         <string name="id_identy_template_format">Formato de plantilla IDENTY</string>
         <string name="id_image_cd_todo">QUE HACER</string>
         <string name="id_in_front_camera">2.Coloque los dedos frente a la cámara</string>
-        <string name="id_index">ÍNDICE    </string>
+        <string name="id_index">INDICE    </string>
         <string name="id_index_finger">dedo índice</string>
         <string name="id_inside_guide">Por favor, esté dentro de la guía.</string>
         <string name="id_keep_fingers">1.Extiende y mantén los dedos juntos</string>
@@ -327,14 +327,14 @@ vamos a la carpeta res/values/strings.xml
 
 
 ## Captura Biometria facial 
-### Parametros
->facecallback-> callback de respuesta genera un susses o fail y el detalle 
+### Parámetros
+>Facecallback-> Callback de respuesta genera un success o fail y el detalle .
 
->face ->identifica la camara 0->frontal 1 posterior 
+>Face ->Identifica la camara 0->frontal 1 posterior. 
 
->namePath-> el nombre del archivo de la liencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+>NamePath-> El nombre del archivo de la liencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
->netkey -> token generado despues de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs
+>Netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs.
 
 ``` kotlin
   ResponseIDFace facecallback = new ResponseIDFace() {
@@ -352,38 +352,37 @@ vamos a la carpeta res/values/strings.xml
 ```
 
 
-## configuracion colores de la pantalla de facial
+## Configuración colores de la pantalla de facial
 ### Colores para personalizar la vista 
-Estos colores se toman de la configuracon de la app 
->id_box -> color del mensaje 
->id_face_boxes -> color del del borde
->colorPrimary -> color del footer y el header 
+Estos colores se toman de la configuración de la app 
+>id_box -> Color del mensaje 
+>id_face_boxes -> Color del borde
+>colorPrimary -> Color del footer y el header 
 ```
   
     <color name="id_box">#FF5722</color>
     <color name="id_face_boxes">#8BC34A</color>
 ```
 
-## Captura Biometria facial - dactilar juntas 
-### Parametros
->facecallback-> callback de respuesta genera un susses o fail y el detalle 
+## Captura Biometría facial - dactilar juntas 
+### Parámetros
+>facecallback-> Callback de respuesta genera un success o fail y el detalle 
 
->face ->identifica la camara 0->frontal 1 posterior 
+>face ->Identifica la cámara 0->frontal 1 posterior 
 
->finger ->identifica la mano que quiero capturar 2 mano derecha, 7  mano izquierda
+>finger ->Identifica la mano que quiero capturar: enviamos el dedo  #2, mano derecha, dedo #7,  mano izquierda.
 
->licenseFilefinger-> el nombre del archivo de la liencia para uso de huellas ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+>licenseFilefinger-> El nombre del archivo de la liencia para uso de huellas ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+
+>licenseFileface-> El nombre del archivo de la liencia para uso de facial ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+
+>netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs
+
+>   idbiometric.captureInitFingerprint(finger); lanza la captura de huellas. 
+>   idbiometric.captureInitFaceprint(0); lanza la captura del rostro. 
 
 
->licenseFileface-> el nombre del archivo de la liencia para uso de facial ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
-
->netkey -> token generado despues de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs
-
->   idbiometric.captureInitFingerprint(finger); lanza la captura de huellas 
->   idbiometric.captureInitFaceprint(0); lanza la captura del rostro 
-
-
-### Los colores se confguran de la misma manera que se explica en las capturas individuales.
+### Los colores se configuran de la misma manera que se explica en las capturas individuales.
 ``` kotlin 
 
 
@@ -405,7 +404,7 @@ Estos colores se toman de la configuracon de la app
 
 # respuestas de las capturas 
 ## onActivityResult  
-Es el callback de la actividad encargado de responder, las acciones anteriormente llamadas. "Documentos" frente y reverso 
+Es el callback de la actividad encargado de responder, las acciones anteriormente llamadas. "Documentos" frente y reverso. 
 ```kotlin
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -423,17 +422,16 @@ Es el callback de la actividad encargado de responder, las acciones anteriorment
                 
 
             }
-            /**si genera un error este sera notificado por formato json frontal del doc*/
+            /**si genera un error este será notificado por formato json frontal del doc*/
             else if (requestCode == MY_REQUEST_CODE_FRONT && resultCode == RESULT_CANCELED) {
                 results_biometric = data?.extras?.getString("InfoFrontDoc")!!
                 
             }
-            /*** si el resultado de la captura del documento es correcta se elimina el path y adiciona el base64 de la imagen  esto aplica para todos los callback*/
             else if (requestCode == MY_REQUEST_CODE_BACK && resultCode == RESULT_OK) {
                 results_biometric = data!!.extras!!.getString("InfoBackDoc")
                 
             }
-            /**si genera un error este sera notificado por formato json*/
+            /**si genera un error este será notificado por formato json*/
             else if (requestCode == MY_REQUEST_CODE_BACK && resultCode == RESULT_CANCELED) {
 
                 results_biometric = data!!.extras!!.getString("InfoBackDoc")
@@ -441,7 +439,6 @@ Es el callback de la actividad encargado de responder, las acciones anteriorment
 
             }
         
-            /**si genera un error este sera notificado por formato json y mostrara un toas por pantalla*/
             else if (resultCode == RESULT_CANCELED) {
                 //   if (requestCode == MY_REQUEST_CODE)
                 Toast.makeText(
@@ -461,28 +458,29 @@ Es el callback de la actividad encargado de responder, las acciones anteriorment
 
 ```
 
-### Informaciónque retorna para captura del documento cedula de ciudadania
+### Información que retorna para captura del documento cédula de ciudadanía
 
-* Retorno: se retorna en la variableun String results_Doc “objeto JSON”con los siguientes datos:
+* Retorno: se retorna en la variable un String results_Doc “objeto JSON”con los siguientes datos:
 * La información retornada es:
     * * VersionCedula 
-      * •02 –Cedula de Ciudadanía
-      * •03 –Cedula de Ciudadanía
-      * •I3 –Tarjeta de Identidad
-      * NumeroTarjeta: Numero de plástico
-      * NumeroCedula
-      * PrimerApellido
-      * SegundoApellido
-      * PrimerNombre
-      * SegundoNombre
-      * NombresCompletos
-      * Sexo
-      * FechaNacimiento
-      * RH
-      * TipoDedo(Dedo impreso en el documento) dedo principal impreso en el documento
-      * TipoDedo2 segunda huella 
-      * •Se define de la siguiente manera o1 –Derecho Pulgaro2 –Derecho Índiceo3 –Derecho Medioo4 –Derecho Anularo5 –Derecho Meñiqueo6 –Izquierdo Pulgaro7 –Izquierdo Índiceo8 –Izquierdo Medioo9 –Izquierdo Anularo10 –Izquierdo Meñiqueo20 –Mano derechao21 –Mano izquierda§BarcodeBase64: Código de barras en base64 que se requiere para procesos posteriores
-      * PathImagen: Ubicacióndonde se almaceno la imagen del documento(esta puede ser eliminada por la aplicación cuando ya no se requiera)(la imagen se retorna de tamaño 640x480 independiente de la calidad de la cámara del dispositivo)
+      * •02 –Cedula de Ciudadanía.
+      * •03 –Cedula de Ciudadanía.
+      * •I3 –Tarjeta de Identidad.
+      * NumeroTarjeta: Numero de plástico.
+      * NumeroCédula.
+      * PrimerApellido.
+      * SegundoApellido.
+      * PrimerNombre.
+      * SegundoNombre.
+      * NombresCompletos.
+      * Sexo.
+      * FechaNacimiento.
+      * RH.
+      * TipoDedo(Dedo impreso en el documento) dedo principal impreso en el documento.
+      * TipoDedo2 segunda huella. 
+      * La identifiacíon de los dedos es: 1 –Derecho Pulgar, 2 –Derecho Índice, 3 –Derecho Medio, 4 –Derecho Anular, 5 –Derecho Meñique, 6        –Izquierdo Pulgar, 7 –Izquierdo Índice, 8 –Izquierdo Medio, 9 –Izquierdo Anular, 10 –Izquierdo Meñique, 20 –Mano derecha, 21 –Mano        izquierda.
+      * BarcodeBase64: Código de barras en base64 que se requiere para procesos posteriores.
+      * PathImagen: Ubicación donde se almacenó la imagen del documento (esta puede ser eliminada por la aplicación cuando ya no se             requiera)(la imagen se retorna de tamaño 640x480 independiente de la calidad de la cámara del dispositivo).
 
 
 TARJETA DE IDENTIDAD  
@@ -492,7 +490,7 @@ TARJETA DE IDENTIDAD
 
 
 
-Cedula de extranjeria 
+Cédula de extranjería 
 
 * {
   "CodigoOperacion": "0000",
@@ -528,7 +526,7 @@ Cedula de extranjeria
 }
 
 
-cedula Digital 
+Cédula digítal 
 
 * {
   "CodigoOperacion":"0000",
@@ -579,7 +577,7 @@ Huellas
  
 
 ------------------------------
-# codigo de errores 
+# Código de errores 
 
 ```
 <string name="OK">0000</string><string name="TimeOut">0001</string>
