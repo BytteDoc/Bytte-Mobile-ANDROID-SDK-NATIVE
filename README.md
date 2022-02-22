@@ -10,6 +10,7 @@
     Autor Venancio prada. 
     Fecha de creación 9 septiembre 2021.
     versión  documentación -> 2.0.0.
+    Versión SDK Bytte 8.2.0
 
 
 
@@ -49,8 +50,8 @@ android{
 
 repositories {
         maven {
-            url 'https://multifactorbyttelibrary.pkgs.visualstudio.com/BytteSDKLibraryX/_packaging/BytteSdk/maven/v1'
-            name 'BytteSdk'
+             url 'https://multifactorbyttelibrary.pkgs.visualstudio.com/BytteSDKLibraryX/_packaging/BytteSDKIdenty/maven/v1'
+             name 'BytteSDKIdenty'
             credentials {
                 username ""
                 password ""
@@ -70,45 +71,42 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias.
    
     
 
-    implementation  'com.squareup.okhttp3:okhttp:4.4.0'
-    implementation("com.squareup.okhttp3:logging-interceptor:4.4.0")
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+   
+    implementation  'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation "com.android.support:support-v4:28.0.3"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation  'org.jetbrains.kotlin:kotlin-stdlib:1.3.61'
+    implementation  'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
     implementation  'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    implementation 'org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.3.50'
+    implementation 'org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.6.10'
 
 
 
-    implementation 'com.android.volley:volley:1.1.0'
-    api 'com.google.android.gms:play-services-safetynet:17.0.1'
+    implementation 'com.android.volley:volley:1.2.1'
+    api 'com.google.android.gms:play-services-safetynet:18.0.1'
 
 
-    implementation "androidx.exifinterface:exifinterface:1.3.2"
-    implementation 'com.google.android.gms:play-services-vision:20.1.0'
+    implementation "androidx.exifinterface:exifinterface:1.3.3"
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
 
-    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.core:core-ktx:1.7.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
-    implementation "com.google.android.material:material:1.3.0"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "com.google.android.material:material:1.5.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
+    implementation 'com.bytte.microblink:LibBlinkIDCustom:5.15.0'
+    implementation 'com.document.bytte:documentBytte:8.0.3'
 
-    implementation 'com.document.bytte:LibBlinkIDCustom:5.13.0'
-    implementation 'com.document.bytte:documentBytte:7.8.2'
 
-
-    implementation 'com.biometric.bytte:camera:1.0.0'
-    implementation 'com.biometric.bytte:byttefaceid:1.1.2'
-    implementation 'com.biometric.bytte:facesdk-quality:release'
-    implementation 'com.biometric.bytte:finger:3.0.3.3'
-    implementation 'com.biometric.bytte:identy:1.0.0'
+    implementation'com.bytte.biometric:FingerFace:8.0.5'
+    implementation'com.bytte.facemlh:Face:1.0.1'
+    implementation'com.bytte.indenty:fingerface:4.13.35'
 
 
 ```
@@ -125,7 +123,7 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias.
         <!-- captura doc -->
         <activity android:name="com.bytte.docbytte.ui.FrontDocument" />
         <activity android:name="com.bytte.docbytte.ui.BackDocument" />
-        <activity android:name="com.bytte.docbytte.ui.CreditCardData" />
+        <activity android:name="com.bytte.docbytte.ui.CreditCardData" /> //Si aplica
 
     
 
@@ -135,63 +133,54 @@ En el archivo gradle *build.gradle*  adicionaremos las dependencias.
 ## Captura de Insumos 
 El app debe solicitar los permisos  en tiempo de ejecución antes de usar la funcionalidad y validar que el permiso fue otorgado.
 
-## Captura Frente Documento
-### Parámetros
->EXTRAS_PROTECT_KEY :Esta identificará si la imagen estará o nó protegida; si está, en vacío nó está protegida.
->EXTRAS_TIMEOUT  :Genera un tiempo de funcionamiento en la captura por segundos.
->EXTRAS_LICENSE_KEY :Licencia provista por Bytte para la captura de  los documentos.
->EXTRAS_COUNTRY :Identificador para la captura de los diferentes documentos.
+## Captura Documento
+### Inicializar la captura. 
+>Activity :Pasamos 
+>new InitializationListener<IDCaptureDocumentBytte>()  :establecer los parámetros de configuración del SDK deseados, en el método onInit().
+>new BytteResponseListener<String>() :callbacks donde llegara la respuesta correcta "onResponse" o errónea "onErrorResponse"
 ```kotlin 
- var intent = Intent(this@MainActivity, FrontDocument::class.java)
-            intent.putExtra("EXTRAS_PROTECT_KEY", "")
-            intent.putExtra("EXTRAS_TIMEOUT", "20")
-            intent.putExtra("EXTRAS_LICENSE_KEY", LICENSEMICROBLINK)
-            intent.putExtra("EXTRAS_COUNTRY", "CO")
-            startActivityForResult(intent, MY_REQUEST_CODE_FRONT)
+  IDCaptureDocumentBytte.newInstance(Activity(), new InitializationListener<IDCaptureDocumentBytte>() {
+            @Override
+            public void onInit(IDCaptureDocumentBytte d) {
+                d.setLicenceMicroblink(license);
+                d.setKey(key);
+                d.setImgColor(true);
+                d.setTipoCaptura(ETipocaptura.BACK);
+                d.setTimeOut(timeOut);
+                d.capture();
+            }
+        }, new BytteResponseListener<String>() {
+            @Override
+            public void onResponse(String results) {
+
+            }
+
+            @Override
+            public void onErrorResponse(String obj) {
+
+            }
+        });
 ```
-## Captura Dorso Documento
-### Parámetros
-
->EXTRAS_PROTECT_KEY :Esta identificará si la imagen estará o nó protegida; si está, en vacío nó está protegida.
->EXTRAS_TIMEOUT  :Genera un tiempo de funcionamiento en la captura por segundos.
->EXTRAS_LICENSE_KEY :Licencia provista por Bytte para la captura de  los documentos.
->EXTRAS_COUNTRY :Identificador para la captura de los diferentes documentos.
+### Configuración Parámetros  la captura. 
 
 
-| País   | Típo documento |
-|--------|----------------|
-| COEXT  | DOCUMENTO COLOMBIANO DE EXTRANJERIA |
-| COTI   | DOCUMENTO COLOMBIANO TARJETA DE IDENTIDAD |
-| COV2   | DOCUMENTO COLOMBIANO CEDULA DE CIUDADANIA DIGITAL |
-| CO     | DOCUMENTO COLOMBIANO HOLOGRAMAS REVERSO |
+|onInit(IDCaptureDocumentBytte d) ||
+|---------------------------------|--|
+| d.setLicenceMicroblink(license)   | Licencia provista por Bytte para la captura de  los documentos.
+| d.setKey(key)                       | Llave de protección para las img. Esta retorna la img en formato .bytte
+| d.setImgColor(true)                 | Identifica si la img está a color o blanco y negro 
+| d.setTimeOut(timeOut)               | Tiempo de duración de la captura
+| d.setTipoCaptura(ETipocaptura.BACK) | Identifica la  captura a generarse ETipocaptura.BACK -> reverso,  ETipocaptura.FRONT -> frontal, ETipocaptura.QR captura qr, ETipocaptura.FRONT_BACK captura frente dorso en la misma captura rotando el documento cuando se indique 
+| d.setTipoDocumento(ETipoDocumento.DOCUMENT)| Identifica el tipo capturara. Documento actual ejm Colombia cédula amarilla este valor está predefinido. Se modifica si se requiere la captura de tarjeta de identidad, cédula física digital, o cédula extranjería. Por el momento estas últimas capturas están integradas capturando las dos caras en la misma escena
+|d.capture()|  Lanza la captura con los parámetros de inicialización definidos.
+|
 
-## Captura
-
-```kotlin
-         var intent = Intent(this@MainActivity, BackDocument::class.java)
-            intent.putExtra("EXTRAS_PROTECT_KEY", "")
-            intent.putExtra("EXTRAS_TIMEOUT", "20")
-            intent.putExtra("EXTRAS_COUNTRY", "CO")
-            intent.putExtra("EXTRAS_LICENSE_KEY", LICENSEMICROBLINK)
-            startActivityForResult(intent, MY_REQUEST_CODE_BACK)
-```
 
 ## Licenciamiento Biometría Huellas y Rostro
 ### Parámetros
-**Para el uso de la licencia identy es necesario registrar el app Package ID en la plataforma de google developer.**  
-* **Para generar la llave safetyNet api key busca los detalles del resgistro.**
-en https://developer.android.com/training/safetynet/attestation
-* **Desarrollador SHA1 Key. Cada desarrollador necesita un par de claves para firmar aplicaciones: una para 'debug' y otra para el modo de 'release'. Estos HASH también deben estar asociados con la licencia.**
-
 ## Licencia  Android para el uso de huellas
 * **Crear una carpeta en el directorio android llamada 'assets'.**
 Dentro de esa carpeta depositamos el archivo de licencia que se genera para la implementación en 'debug' y otra, reléase.
-
-
-## Llave safetynet 
-https://developer.android.com/training/safetynet/attestation
-En la url se muestran los detalles para solicitar la llave safetynet. 
-
 
 
 ## Captura Biometría huellas 
@@ -202,23 +191,26 @@ En la url se muestran los detalles para solicitar la llave safetynet.
 
 >namePath-> El nombre del archivo de la licencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
->netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs.
+> netkey -> parametro en vacio 
+> Url ->  url Provisto por bytte para la inicialización parámetro requerido para su funcionamiento.
+> key -> Llave de protección para las img. Esta retorna la img en formato .bytte se deja en vacio si no se requiere.
+
+
 
 ``` kotlin
 
-     
-      ResponseIDFinger fingercallback = new ResponseIDFinger() {
+     // segunos
+
+
+        ResponseIDBiometric callback = new ResponseIDBiometric() {
             @Override
-            public void objFingerResoult(IDFingerResult result) {
-                
-                System.out.println(result);
+            public void objBiometricResoult(IDBiometricResult result) {
+
             }
         };
 
-        IDCaptureFinger idfinger = new IDCaptureFinger(namePath, netkey, fingercallback,Activity());
-        idfinger.captureInitFingerprint(finger);
-
-
+        IDCaptureBiometric idfinger = new IDCaptureBiometric(namePath, netkey, callback, reactContext.getCurrentActivity());
+        idfinger.captureInitFingerprint("Url","key",finger);
 
 ```    
 ## Configuración colores de la pantalla de huellas
@@ -328,26 +320,28 @@ Vamos a la carpeta res/values/strings.xml
 
 ## Captura Biometría facial 
 ### Parámetros
->Facecallback-> Callback de respuesta genera un success o fail y el detalle .
+>fingercallback-> Callback de respuesta genera un success o fail y el detalle. 
 
->Face ->Identifica la cámara 0->frontal 1 posterior. 
+>finger ->Identifica la mano que quiero capturar: enviamos el dedo  #2, mano derecha, dedo #7,  mano izquierda.
 
->NamePath-> El nombre del archivo de la liencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
+>namePath-> El nombre del archivo de la licencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
->Netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs.
+> netkey -> parametro en vacio 
+> Url ->  url Provisto por bytte para la inicialización parámetro requerido para su funcionamiento.
+> key -> Llave de protección para las img. Esta retorna la img en formato .bytte se deja en vacio si no se requiere.
+> camara >camara frontal 1 camara posterior.  valor numerico 
 
 ``` kotlin
-  ResponseIDFace facecallback = new ResponseIDFace() {
+
+        ResponseIDBiometric callback = new ResponseIDBiometric() {
             @Override
-            public void objFingerResoult(IDFaceResult result) {
-                
-                System.out.println(result);
+            public void objBiometricResoult(IDBiometricResult result) {
+
             }
         };
 
-        IDCaptureFace face = new IDCaptureFace(namePath, netkey, facecallback,Activity());
-        idfinger.captureInitFaceprint(face);
-
+        IDCaptureBiometric idface = new IDCaptureBiometric(namePath, netkey, callback, reactContext.getCurrentActivity());
+        idface.captureInitFaceprint("url","key",camara)
 
 ```
 
@@ -364,99 +358,6 @@ Estos colores se toman de la configuración de la app
     <color name="id_face_boxes">#8BC34A</color>
 ```
 
-## Captura Biometría facial - dactilar juntas 
-### Parámetros
->facecallback-> Callback de respuesta genera un success o fail y el detalle 
-
->face ->Identifica la cámara 0->frontal 1 posterior 
-
->finger ->Identifica la mano que quiero capturar: enviamos el dedo  #2, mano derecha, dedo #7,  mano izquierda.
-
->licenseFilefinger-> El nombre del archivo de la liencia para uso de huellas ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
-
->licenseFileface-> El nombre del archivo de la liencia para uso de facial ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
-
->netkey -> Token generado después de vincular el packagename  del safetynet ejm: AIzaSyD9qwBK5HsdDrk0hRkh9hEGt7pM5bSLQKs
-
->   idbiometric.captureInitFingerprint(finger); lanza la captura de huellas. 
->   idbiometric.captureInitFaceprint(0); lanza la captura del rostro. 
-
-
-### Los colores se configuran de la misma manera que se explica en las capturas individuales.
-``` kotlin 
-
-
-    ResponseIDBiometric callback = new ResponseIDBiometric() {
-            @Override
-            public void objBiometricResoult(IDBiometricResult result) {
-                
-                System.out.println(result);
-            }
-        };
-
-        IDCaptureBiometric idbiometric = new IDCaptureBiometric(licenseFilefinger,licenseFileface,NET_KEY, netkey, callback,Activity());
-
-
-        idbiometric.captureInitFingerprint(finger);
-        idbiometric.captureInitFaceprint(0);
-
-```
-
-# Respuestas de las capturas 
-## onActivityResult  
-Es el callback de la actividad encargado de responder, las acciones anteriormente llamadas. "Documentos" frente y reverso. 
-```kotlin
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        var properties: Properties
-        val gson = Gson()
-        var results_biometric: String
-        var json: String = ""
-
-        try {
-            /**validacion de la respuesta ok de la captura frontal del doc*/
-            if (requestCode == MY_REQUEST_CODE_FRONT && resultCode == RESULT_OK) {
-                results_biometric = data?.extras?.getString("InfoFrontDoc")!!
-                
-
-            }
-            /**si genera un error este será notificado por formato json frontal del doc*/
-            else if (requestCode == MY_REQUEST_CODE_FRONT && resultCode == RESULT_CANCELED) {
-                results_biometric = data?.extras?.getString("InfoFrontDoc")!!
-                
-            }
-            else if (requestCode == MY_REQUEST_CODE_BACK && resultCode == RESULT_OK) {
-                results_biometric = data!!.extras!!.getString("InfoBackDoc")
-                
-            }
-            /**si genera un error este será notificado por formato json*/
-            else if (requestCode == MY_REQUEST_CODE_BACK && resultCode == RESULT_CANCELED) {
-
-                results_biometric = data!!.extras!!.getString("InfoBackDoc")
-            
-
-            }
-        
-            else if (resultCode == RESULT_CANCELED) {
-                //   if (requestCode == MY_REQUEST_CODE)
-                Toast.makeText(
-                        this,
-                        (if (data != null) data.extras!!.getString("pathimagefrontdoc") else "{}").toString(),
-                        Toast.LENGTH_SHORT
-                ).show()
-                return
-            }
-
-        } catch (e: Exception) {
-            Log.e("", "Failed to set preview display! " + e.message)
-        }
-
-
-    }
-
-```
 
 ### Información que retorna para captura del documento cédula de ciudadanía
 
@@ -535,35 +436,10 @@ Cédula digital
   "MRZ":"ICCOL000310431215094\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\n8609203M3104079COL1069716751\u003c0\nPRADA\u003cNAVARRO\u003c\u003cVENANCIO\u003c\u003c\u003c\u003c\u003c\u003c\u003c\n","Nacionalidad":"COL","Nombres":"VENANCIO","NombresCompletos":"VENANCIO PRADA NAVARRO","NumeroDocumento":"1069716751","OPT":"15094\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c","RUN":"000310431","Sexo":"M","TipoDocumento":"IC","Version1":"2"}}
  
 Huellas
+<p align="center" >
+  <img src="../Bytte-Mobile-ANDROID-SDK-NATIVE/img/huellas.png" alt="bytte" title="bytte">
+</p>
 
-* {
-  "CodigoOperacion": "0000",
-  "MensajeOriginal": "Captura Exitosa",
-  "MensajeRetorno": "Ok Captura",
-  "StatusOperacion": true,
-  "FingerprintsObjects": [
-    {
-      "BitmapBase64": "vh8lkgtfrRXV1taytCFXlmo5kFPbyXKkFAoE5+3je6vw3i8UiLDal7twjjzyCW7duya3v\ndrvFl85ut8+hEKvwNDsWszBDhK\n6AAAAABJRU5ErkJggg\u003d\u003d\n",
-      "Fingerprint": "RING",
-      "fingernumber": "4"
-    },
-    {
-      "BitmapBase64": "2txdraGmpqalBfXw/DMOD3F4kHv54XP44WWbmscFLpoaGhoHAj6FqOhoXEg6KKhoaFx\nIOiioaGhcSDooqGhoXEg6KKhoaFxIOiioaGhcSDooqGhoXEg6KKhoaFxIOiioaGhcSDooqGhoXEg\n6KKhoaFxIOiioaGhcSD8BzMe3M88wNh/AAAAAElFTkSuQmCC\n",
-      "Fingerprint": "INDEX",
-      "fingernumber": "2"
-    },
-    {
-      "BitmapBase64": "VcVr1eDwYHBzEAw88IKf59PS0\nGCDS302n08FsNgubrKWlBXv37gXwfoUAYMlpTJ900kiTySS+8Y1vyKmndFVVyjoJgvFkzM7OlhOS\npzZbEd5QNBoN/vZv/UmGmLOnT8eFFOrnTkY5lGummJh3pWKaRTu50pGOZRjq505GOZRrp5E5HOpZp\npJM7HelYppFO7nSkY5lGOrnTkY5lGunkTkc6lmmkkzsd6VimkU7udKRjmUY6udORjmUa6eRORzqW\naaSTOx3pWKbx/wDDxl63gFETfwAAAABJRU5ErkJggg\u003d\u003d\n",
-      "Fingerprint": "LITTLE",
-      "fingernumber": "5"
-    },
-    {
-      "BitmapBase64": "WuH3+zE2NiZ3WIfDIYbHqVQKDQ0NMBgMOHz4sGw3\nurq6hHHK5Hi73Y5IJCIxCAcPHoSmaejq6gIAfP7U1gVV\nNBQUFNYFVTQUFBTWBVU0FBQU1gVVNBQUFNYFVTQUFBTWBVU0FBQU1gVVNBQUFNaF/wHvazFYI1L0\nlQAAAABJRU5ErkJggg\u003d\u003d\n",
-      "Fingerprint": "MIDDLE",
-      "fingernumber": "3"
-    }
-  ]
-}
 
  Rostro  
 
