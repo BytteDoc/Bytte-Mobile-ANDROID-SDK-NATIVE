@@ -437,7 +437,7 @@ Cédula digital
  
 Huellas
 <p align="center" >
-  <img src="../Bytte-Mobile-ANDROID-SDK-NATIVE/img/huellas.png" alt="bytte" title="bytte">
+  <img src="img/huellas.png" alt="bytte" title="bytte">
 </p>
 
 
