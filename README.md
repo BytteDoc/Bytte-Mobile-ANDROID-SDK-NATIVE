@@ -167,8 +167,7 @@ El app debe solicitar los permisos  en tiempo de ejecución antes de usar la fun
 |onInit(IDCaptureDocumentBytte d) ||
 |---------------------------------|--|
 | d.setLicenceMicroblink(license)   | Licencia provista por Bytte para la captura de  los documentos.
-| d.setKey(key)                       | Llave de protección para las img. Si lleva un valor diferente a vacío Esta retorna la img formato .bytte
-el resultado es una imagen cifrada con aes 256 por sesión.
+| d.setKey(key)                       | Llave de protección para las img. Si lleva un valor diferente a vacío Esta retorna la img en formato .bytte, el resultado es una imagen cifrada con aes 256 por sesión. 
 | d.setImgColor(true)                 | Identifica si la img está a color o blanco y negro 
 | d.setTimeOut(timeOut)               | Tiempo de duración de la captura
 | d.setTipoCaptura(ETipocaptura.BACK) | Identifica la  captura a generarse ETipocaptura.BACK -> reverso,  ETipocaptura.FRONT -> frontal, ETipocaptura.QR captura qr, ETipocaptura.FRONT_BACK captura frente dorso en la misma captura rotando el documento cuando se indique 
@@ -193,9 +192,10 @@ Dentro de esa carpeta depositamos el archivo de licencia que se genera para la i
 >namePath-> El nombre del archivo de la licencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
 > netkey -> parametro en vacio 
+
 > Url ->  url Provisto por bytte para la inicialización parámetro requerido para su funcionamiento.
-> key -> Llave de protección para las img. si lleva un valor diferente a vacío Esta retorna la img formato .bytte
-el resultado es una imagen cifrada con aes 256 por sesión.
+
+> key ->Llave de protección para las img. Si lleva un valor diferente a vacío Esta retorna la img en formato .bytte, el resultado es una imagen cifrada con aes 256 por sesión.
 
 
 ``` kotlin
@@ -328,9 +328,11 @@ Vamos a la carpeta res/values/strings.xml
 >namePath-> El nombre del archivo de la licencia ejm: 1148_com.biometric.bytte.casbauth2021-06-09 00 00 00.lic
 
 > netkey -> parametro en vacio 
+
 > Url ->  url Provisto por bytte para la inicialización parámetro requerido para su funcionamiento.
-> key -> Llave de protección para las img. si lleva un valor diferente a vacío Esta retorna la img formato .bytte
-el resultado es una imagen cifrada con aes 256 por sesión.
+
+> key -> Llave de protección para las img. Si lleva un valor diferente a vacío Esta retorna la img en formato .bytte, el resultado es una imagen cifrada con aes 256 por sesión.
+
 > camara >camara frontal 1 camara posterior.  valor numerico 
 
 ``` kotlin
