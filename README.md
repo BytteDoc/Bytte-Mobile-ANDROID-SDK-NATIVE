@@ -230,7 +230,164 @@ onInit(IDCaptureDocumentBytte d)
 | d.setKeyjoin(true);                       | Boolean       | Las imagenes capturadas las retorna en un unico archivo.                                                                                                                                            |
 | d.setdocumenttype(ETypeDocument.DOCUMENT) | ETypeDocument | DOCUMENT -> Documentos de identidad : identifica la captura segun el country , PASPORTDOCUMENT -> Pasaporte : cuando se selecciona no tiene encuenta en country , CREDITCARD -> Tarjeta de credito. |
 | d.setCountry(Country.CO)                  | Country       | dentifica el pais y versión del documento CO -> Documento colombiano Hologramas COV2 -> Documento colombiano Digital COCET2 -> Documento colombiano extrangeria.                                    |
-|                                           |               |                                                                                                                                                                                                     |
+|                                           |               |
+
+### Respuesta Captura Documentos:
+
+                                                                           |
+
+### Respuesta Cédula Hologramas Reverso:
+
+| Campo            | Tipo    |
+| ---------------- | ------- |
+| BarcodeBase64    | String  |
+| CiudadExpedicion | String  |
+| CiudadNacimiento | String  |
+| CodigoOperacion  | String  |
+| DepartamentoCol  | String  |
+| FechaExp         | String  |
+| FechaNacimiento  | String  |
+| MensajeOriginal  | String  |
+| MensajeRetorno   | String  |
+| NombresCompletos | String  |
+| NumeroCedula     | String  |
+| NumeroTarjeta    | String  |
+| Pais             | String  |
+| PathImagen       | String  |
+| PrimerApellido   | String  |
+| PrimerNombre     | String  |
+| RH               | String  |
+| SegundoApellido  | String  |
+| SegundoNombre    | String  |
+| Sexo             | String  |
+| StatusOperacion  | Boolean |
+| TipoDedo         | String  |
+| TipoDedo2        | String  |
+| VersionCedula    | String  |
+
+### Respuesta Cédula Hologramas Frente:
+
+| Campo            | Tipo    |
+| ---------------- | ------- |
+| Apellidos        | String  |
+| CodigoOperacion  | String  |
+| MensajeOriginal  | String  |
+| MensajeRetorno   | String  |
+| Nombres          | String  |
+| NumeroCedula     | String  |
+| PathImagen       | String  |
+| PathImagenFull   | String  |
+| PathImagenRostro | String  |
+| StatusOperacion  | Boolean |
+
+### Respuesta Cédula Digital Reverso:
+
+| Campo              | Valor   |
+| ------------------ | ------- |
+| CodigoOperacion    | String  |
+| MensajeOriginal    | String  |
+| MensajeRetorno     | String  |
+| StatusOperacion    | Boolean |
+| ReversoMRZ         |         |
+| - PathImagen       | String  |
+| - Apellidos        | String  |
+| - CodigoDocumento  | String  |
+| - Edad             | String  |
+| - Emisor           | String  |
+| - FechaExpiracion  | String  |
+| - FechaNacimiento  | String  |
+| - MRZ              | String  |
+| - Nacionalidad     | String  |
+| - Nombres          | String  |
+| - NombresCompletos | String  |
+| - NumeroDocumento  | String  |
+| - OPT              | String  |
+| - RUN              | String  |
+| - Sexo             | String  |
+| - TipoDocumento    | String  |
+| - Version1         | String  |
+
+### Respuesta Cédula Digital Frente:
+
+| Campo              | Valor   |
+| ------------------ | ------- |
+| MensajeOriginal    | String  |
+| MensajeRetorno     | String  |
+| StatusOperacion    | Boolean |
+| CodigoOperacion    | String  |
+| Frente             |         |
+| - PathImagen       | String  |
+| - PathImagenFull   | String  |
+| - PathImagenRostro | String  |
+| - Nombres          | String  |
+| - NumeroCedula     | String  |
+
+### Respuesta Cédula Extranjería Reverso:
+
+| Campo              | Valor   |
+| ------------------ | ------- |
+| CodigoOperacion    | String  |
+| MensajeOriginal    | String  |
+| MensajeRetorno     | String  |
+| StatusOperacion    | Boolean |
+| ReversoMRZ         |         |
+| - PathImagen       | String  |
+| - Apellidos        | String  |
+| - CodigoDocumento  | String  |
+| - Edad             | String  |
+| - Emisor           | String  |
+| - FechaExpiracion  | String  |
+| - FechaNacimiento  | String  |
+| - MRZ              | String  |
+| - Nacionalidad     | String  |
+| - Nombres          | String  |
+| - NombresCompletos | String  |
+| - NumeroDocumento  | String  |
+| - OPT              | String  |
+| - RUN              | String  |
+| - Sexo             | String  |
+| - TipoDocumento    | String  |
+| - Version1         | String  |
+
+### 3.3.2.6 Respuesta Cédula Extranjería Frente:
+
+| Campo              | Valor   |
+| ------------------ | ------- |
+| CodigoOperacion    | String  |
+| MensajeOriginal    | String  |
+| MensajeRetorno     | String  |
+| StatusOperacion    | Boolean |
+| Frente             |         |
+| - PathImagen       | String  |
+| - PathImagenFull   | String  |
+| - PathImagenRostro | String  |
+| - FechaExpiracion  | String  |
+| - NumeroCedula     | String  |
+| - IsExpired        | Boolean |
+
+### Respuesta Pasaporte:
+
+| Campo                | Valor   |
+| -------------------- | ------- |
+| Apellidos            | String  |
+| Codigo               | String  |
+| CodigoOperacion      | String  |
+| Emisor               | String  |
+| FechaExpiracion      | String  |
+| FechaNacimiento      | String  |
+| IdTipoDocumento      | String  |
+| IdentificadorProceso | String  |
+| MRZ                  | String  |
+| Nacionalidad         | String  |
+| Nombres              | String  |
+| NumeroDocumento      | String  |
+| NumeroPersonal       | String  |
+| Opt2                 | String  |
+| PathImagen           | String  |
+| Sexo                 | String  |
+| StatusOperacion      | Boolean |
+| Version1             | String  |
+| IsExpired            | Boolean |
 
 ## Captura Biometria
 
@@ -483,7 +640,6 @@ Para realizar el llamado de captura facial V2 es necesario inicializar y agregar
 | timeOut    | Int      | Tiempo de duración de la captura.                                                                                                                                               |
 | camera     | Enum     | Indica sobre que camara inicia el sdk **_Front_** -> Camara Frontal **_Back_** -> Camara Reverso                                                                                |
 | act        | activity | instancia de la activity                                                                                                                                                        |
-
 
 # Código de errores
 
